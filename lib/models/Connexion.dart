@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'Home.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
 
 class Connexion extends StatelessWidget {
+
+
+  TextEditingController user = new TextEditingController();
+  TextEditingController pass = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +21,8 @@ class Connexion extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
-                decoration: InputDecoration(labelText: "E-mail"),
+                decoration: InputDecoration(labelText: "E-mail", ),
+                controller: user,
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: "Mot de passe"),
@@ -28,7 +37,9 @@ class Connexion extends StatelessWidget {
               SizedBox(height: 30.0),
               ElevatedButton(
                 child: Text("Connexion"),
-                onPressed: () {},
+                onPressed: () {
+                    _login();
+                },
               ),
               ElevatedButton(
                 child: Text("Retour"),
@@ -43,4 +54,27 @@ class Connexion extends StatelessWidget {
           ))),
     ));
   }
+}
+
+String username = '';
+
+TextEditingController user = new TextEditingController();
+TextEditingController pass = new TextEditingController();
+
+String msg = '';
+
+Future<List> _login() async {
+  final response = await http.post("", body: {
+    "username": user.text,
+    "password": pass.text,
+  });
+
+  var dataUser = json.decode(response.body);
+
+  if (dataUser.lenght == 0) {
+    return null;
+  }
+
+  return dataUser;
+
 }
