@@ -49,7 +49,7 @@ class Connexion extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => Home()),
                   );
                 },
-              )
+              ),
             ],
           ))),
     ));
@@ -64,17 +64,14 @@ TextEditingController pass = new TextEditingController();
 String msg = '';
 
 Future<List> _login() async {
-  final response = await http.post("", body: {
-    "username": user.text,
-    "password": pass.text,
+  final response = await http.post("http://10.0.2.2/kulturio/bdd/application/check_account.php", body: {
+    "email": user.text,
+    "mdp": pass.text,
   });
 
   var dataUser = json.decode(response.body);
 
-  if (dataUser.lenght == 0) {
-    return null;
-  }
 
-  return dataUser;
+print(dataUser);
 
 }
