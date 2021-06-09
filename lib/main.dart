@@ -13,7 +13,8 @@ void main() {
   runApp(MaterialApp(
     title: "Kulturio",
     debugShowCheckedModeBanner: false,
-    home: QuizzScreen()
+   // home: Home(),
+    home: Connexion(),
     ),
   );
 }

@@ -1,8 +1,8 @@
 <?php
 include('connexion_bdd.php')
 
-$sql = 'SELECT * FROM options'
-$request=$conn->prepare($sql);
-$request=$conn->execute()
+$sql = 'SELECT * from questions';
+$resul = $conn->query($sql);
+$tabQuestRepons = $resul->fetchALL(PDO::FETCH_ASSOC);
 
 ?>

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kulturio/models/Connexion.dart';
+import 'package:kulturio/screens/quiz_screen.dart';
 
 import 'Register.dart';
 
@@ -23,23 +24,14 @@ class Home extends StatelessWidget {
                       )),
                   SizedBox(height: 30.0),
                   ElevatedButton(
-                    child: Text("Connexion"),
+                    child: Text("Jouer"),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Connexion()),
+                        MaterialPageRoute(builder: (context) => QuizzScreen()),
                       );
                     },
                   ),
-                  ElevatedButton(
-                    child: Text("Inscription"),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Register()),
-                      );
-                    },
-                  )
                 ],
               ))),
     );

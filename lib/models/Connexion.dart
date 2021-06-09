@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kulturio/screens/quiz_screen.dart';
 import 'Home.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -64,14 +66,24 @@ TextEditingController pass = new TextEditingController();
 String msg = '';
 
 Future<List> _login() async {
-  final response = await http.post("http://10.0.2.2/kulturio/bdd/application/check_account.php", body: {
+
+  final response = await http.post("http://10.0.2.2/check_account.php", body: {
     "email": user.text,
-    "mdp": pass.text,
+    "mdp": pass.text
   });
 
-  var dataUser = json.decode(response.body);
+
+  if(response.body.isNotEmpty){
+
+    var dataUser = json.decode(response.body);
+    print(dataUser);
+
+    if(dataUser == "good"){
+    MaterialPageRoute(builder: (context) => Home());
+    }
+
+  }
 
 
-print(dataUser);
 
 }
